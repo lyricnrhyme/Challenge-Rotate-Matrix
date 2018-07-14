@@ -18,9 +18,42 @@ module.exports = class MatrixRotator {
   //      |-- Must be Direction.CW
   //      v        or Direction.CCW
   rotate (direction) {
-    // do work here
+    //Clockwise
+    // console.log(direction);
+    console.log(this.matrix);
+    var thisMatrix = this.matrix;
+    var newMatrix = [];
+    var innerArr = [];
+    if (direction === "ClockWise") {
+      while (thisMatrix[0].length > 0) {
+        for (var i=thisMatrix.length-1; i>=0; i--) {
+          innerArr.push(thisMatrix[i][0]);
+          thisMatrix[i].shift();
+        }
+        newMatrix.push(innerArr);
+        innerArr = [];
+      }
+      console.log(direction);
+      console.log(newMatrix);
+      console.log("**********************")
+      this.matrix = newMatrix;
+      // console.log(thisMatrix);
 
-    // must be a valid Direction, see Direction.js
 
+
+    } else if (direction === "CounterClockWise") {
+      while(thisMatrix[0].length > 0) {
+        for (var i=0; i<thisMatrix.length; i++) {
+          innerArr.push(thisMatrix[i][thisMatrix[i].length-1]);
+          thisMatrix[i].pop();
+        }
+        newMatrix.push(innerArr);
+        innerArr = [];
+      }
+      console.log(direction);
+      console.log(newMatrix);
+      console.log("**********************");
+      this.matrix = newMatrix;
+    }
   }
 };
